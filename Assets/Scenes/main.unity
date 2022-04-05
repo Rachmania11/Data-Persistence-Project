@@ -635,7 +635,11 @@ MonoBehaviour:
   LineCount: 6
   Ball: {fileID: 177912862}
   ScoreText: {fileID: 188020406}
+  BestScoreText: {fileID: 2078529056}
   GameOverText: {fileID: 474497238}
+  m_Points: 0
+  m_GameOver: 0
+  BestScore: 0
 --- !u!1 &455529321
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,7 +830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7af02b64928aafa4294deeff1b15c0f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerName: 
+  BestScore: 0
 --- !u!1 &610430368
 GameObject:
   m_ObjectHideFlags: 0

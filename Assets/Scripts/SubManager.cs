@@ -2,28 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public class SubManager : MonoBehaviour
 {
-    UIText uiText;
+    public int BestScore;
+
     // Start is called before the first frame update
     void Start()
     {
-        uiText = GameObject.Find("Name Text").GetComponent<UIText>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (uiText != null)
-        {
-            NewNameFilled(uiText.playerName);
-        }
+        
     }
 
     public static SubManager Instance;
-
-    public string PlayerName;
 
     private void Awake()
     {
@@ -37,8 +34,36 @@ public class SubManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void NewNameFilled(string playerName)
+    [System.Serializable]
+    class SaveData
     {
-        SubManager.Instance.PlayerName = playerName;
+        public int BestScore;
+    }
+
+    public void SaveScore()
+    {
+        SaveData data = new SaveData();
+        data.BestScore = BestScore;
+
+        string json = JsonUtility.ToJson(data);
+
+        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+    }
+
+    public void LoadScore()
+    {
+        string path = Application.persistentDataPath + "/savefile.json";
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+
+            BestScore = data.BestScore;
+        }
+    }
+
+    public void NewBestScore(int BestScore)
+    {
+        SubManager.Instance.BestScore = BestScore;
     }
 }
