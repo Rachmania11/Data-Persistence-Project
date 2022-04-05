@@ -6,10 +6,11 @@ using UnityEngine.UI;
 public class UIText : MonoBehaviour
 {
     InputField inputField;
+    public string playerName;
     // Start is called before the first frame update
     void Start()
     {
-        inputField = GameObject.Find("Name Text").GetComponent<InputField>();
+        inputField = GetComponent<InputField>();
     }
 
     // Update is called once per frame
@@ -20,7 +21,7 @@ public class UIText : MonoBehaviour
 
     public void GetInputName()
     {
-        string name = inputField.text;
+        playerName = inputField.text;
 
         inputField.text = "";
     }

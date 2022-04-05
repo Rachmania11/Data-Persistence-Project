@@ -5,16 +5,20 @@ using UnityEngine.UI;
 
 public class SubManager : MonoBehaviour
 {
+    UIText uiText;
     // Start is called before the first frame update
     void Start()
     {
-        
+        uiText = GameObject.Find("Name Text").GetComponent<UIText>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (uiText != null)
+        {
+            NewNameFilled(uiText.playerName);
+        }
     }
 
     public static SubManager Instance;
